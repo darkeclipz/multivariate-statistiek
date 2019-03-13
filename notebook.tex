@@ -141,7 +141,7 @@
     \def\gt{>}
     \def\lt{<}
     % Document parameters
-    \title{TW2\_MVS\_Variantie storingsterm}
+    \title{TW2\_MVS\_opdracht\_LogReg}
     
     
     
@@ -281,232 +281,90 @@
 
     
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} X \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+m}{12}\PY{p}{,} \PY{l+m}{3}\PY{p}{,} \PY{l+m}{3}\PY{p}{,} \PY{l+m}{6}\PY{p}{,} \PY{l+m}{11}\PY{p}{,} \PY{l+m}{9}\PY{p}{,} \PY{l+m}{9}\PY{p}{)}
-        Y \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+m}{125}\PY{p}{,} \PY{l+m}{33}\PY{p}{,} \PY{l+m}{45}\PY{p}{,} \PY{l+m}{62}\PY{p}{,} \PY{l+m}{105}\PY{p}{,} \PY{l+m}{106}\PY{p}{,} \PY{l+m}{92}\PY{p}{)}
-        n \PY{o}{=} \PY{k+kp}{length}\PY{p}{(}X\PY{p}{)}
-        one \PY{o}{=} \PY{k+kp}{rep}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} n\PY{p}{)}
-        A \PY{o}{=} \PY{k+kp}{cbind}\PY{p}{(}X\PY{p}{,} one\PY{p}{)}
-        b \PY{o}{=} Y
-        A\PY{p}{;}b\PY{p}{;}
+{\color{incolor}In [{\color{incolor}8}]:} klassemidden\PY{o}{\PYZlt{}\PYZhy{}}\PY{k+kt}{matrix}\PY{p}{(}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{10}\PY{p}{,}\PY{l+m}{30}\PY{p}{,}\PY{l+m}{50}\PY{p}{,}\PY{l+m}{70}\PY{p}{,}\PY{l+m}{90}\PY{p}{,}\PY{l+m}{125}\PY{p}{,}\PY{l+m}{175}\PY{p}{)}\PY{p}{)}
+        huur\PY{o}{\PYZlt{}\PYZhy{}}\PY{k+kt}{matrix}\PY{p}{(}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{76}\PY{p}{,}\PY{l+m}{108}\PY{p}{,}\PY{l+m}{128}\PY{p}{,}\PY{l+m}{54}\PY{p}{,}\PY{l+m}{18}\PY{p}{,}\PY{l+m}{4}\PY{p}{,}\PY{l+m}{1}\PY{p}{)}\PY{p}{)}
+        koop\PY{o}{\PYZlt{}\PYZhy{}}\PY{k+kt}{matrix}\PY{p}{(}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{4}\PY{p}{,}\PY{l+m}{12}\PY{p}{,}\PY{l+m}{32}\PY{p}{,}\PY{l+m}{36}\PY{p}{,}\PY{l+m}{42}\PY{p}{,}\PY{l+m}{36}\PY{p}{,}\PY{l+m}{19}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
-    \begin{tabular}{ll}
- X & one\\
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} df \PY{o}{=} \PY{k+kt}{data.frame}\PY{p}{(}klassemidden\PY{p}{,} huur\PY{p}{,} koop\PY{p}{)}
+         df\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{n\PYZsq{}}\PY{p}{]} \PY{o}{=} df\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{huur\PYZsq{}}\PY{p}{]} \PY{o}{+} df\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{koop\PYZsq{}}\PY{p}{]}
+         df\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{p\PYZus{}huur\PYZsq{}}\PY{p}{]} \PY{o}{=} df\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{huur\PYZsq{}}\PY{p}{]} \PY{o}{/} df\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{n\PYZsq{}}\PY{p}{]}
+         df\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{p\PYZus{}koop\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m}{1} \PY{o}{\PYZhy{}} df\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{p\PYZus{}huur\PYZsq{}}\PY{p}{]}
+         df
+\end{Verbatim}
+
+
+    \begin{tabular}{r|llllll}
+ klassemidden & huur & koop & n & p\_huur & p\_koop\\
 \hline
-	 12 & 1 \\
-	  3 & 1 \\
-	  3 & 1 \\
-	  6 & 1 \\
-	 11 & 1 \\
-	  9 & 1 \\
-	  9 & 1 \\
-\end{tabular}
-
-
-    
-    \begin{enumerate*}
-\item 125
-\item 33
-\item 45
-\item 62
-\item 105
-\item 106
-\item 92
-\end{enumerate*}
-
-
-    
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} x \PY{o}{=} \PY{k+kp}{solve}\PY{p}{(}\PY{k+kp}{t}\PY{p}{(}A\PY{p}{)} \PY{o}{\PYZpc{}*\PYZpc{}} A\PY{p}{)} \PY{o}{\PYZpc{}*\PYZpc{}} \PY{k+kp}{t}\PY{p}{(}A\PY{p}{)} \PY{o}{\PYZpc{}*\PYZpc{}} b\PY{p}{;} x
-\end{Verbatim}
-
-
-    \begin{tabular}{r|l}
-	X &  9.31362\\
-	one & 10.62545\\
+	  10  &  76  &  4   &  80  & 0.95 & 0.05\\
+	  30  & 108  & 12   & 120  & 0.90 & 0.10\\
+	  50  & 128  & 32   & 160  & 0.80 & 0.20\\
+	  70  &  54  & 36   &  90  & 0.60 & 0.40\\
+	  90  &  18  & 42   &  60  & 0.30 & 0.70\\
+	 125  &   4  & 36   &  40  & 0.10 & 0.90\\
+	 175  &   1  & 19   &  20  & 0.05 & 0.95\\
 \end{tabular}
 
 
     
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{k+kp}{summary}\PY{p}{(}lm\PY{p}{(}Y\PY{o}{\PYZti{}}X\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}22}]:} plot\PY{p}{(}df\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{klassemidden\PYZsq{}}\PY{p}{]}\PY{p}{,}df\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{p\PYZus{}koop\PYZsq{}}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
-
-    
-    \begin{verbatim}
-
-Call:
-lm(formula = Y ~ X)
-
-Residuals:
-     1      2      3      4      5      6      7 
- 2.611 -5.566  6.434 -4.507 -8.075 11.552 -2.448 
-
-Coefficients:
-            Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  10.6254     7.2414   1.467 0.202208    
-X             9.3136     0.8736  10.662 0.000126 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 7.799 on 5 degrees of freedom
-Multiple R-squared:  0.9579,	Adjusted R-squared:  0.9494 
-F-statistic: 113.7 on 1 and 5 DF,  p-value: 0.0001256
-
-    \end{verbatim}
-
-    
-    De storingsterm kunnen we op de volgende manier bepalen:
-
-\[ \mathbf{Ax} = \mathbf{b} + \epsilon \iff \epsilon = \mathbf{Ax-b} \]
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} e \PY{o}{=} A \PY{o}{\PYZpc{}*\PYZpc{}} x \PY{o}{\PYZhy{}} b\PY{p}{;} e
-\end{Verbatim}
 
-
-    \begin{tabular}{l}
-	  -2.611111\\
-	   5.566308\\
-	  -6.433692\\
-	   4.507168\\
-	   8.075269\\
-	 -11.551971\\
-	   2.448029\\
-\end{tabular}
-
-
+        Error in stripchart.default(x1, {\ldots}): invalid plotting method
+    Traceback:
     
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} sd\PY{p}{(}e\PY{p}{)}
-\end{Verbatim}
 
+        1. plot(df["klassemidden"], df["p\_koop"])
 
-    7.11991922013967
+        2. plot.data.frame(df["klassemidden"], df["p\_koop"])
 
-    
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{k+kp}{sqrt}\PY{p}{(}\PY{k+kp}{sum}\PY{p}{(}\PY{p}{(}e \PY{o}{\PYZhy{}} \PY{k+kp}{mean}\PY{p}{(}e\PY{p}{)}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m}{2}\PY{p}{)}\PY{o}{/}\PY{p}{(}n\PY{l+m}{\PYZhy{}2}\PY{p}{)}\PY{p}{)}
-\end{Verbatim}
+        3. stripchart(x1, {\ldots})
 
+        4. stripchart.default(x1, {\ldots})
 
-    7.79948072897017
+        5. stop("invalid plotting method")
 
-    
-    \hypertarget{ez-way}{%
-\section{EZ way}\label{ez-way}}
+    \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} X \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+m}{10}\PY{p}{,} \PY{l+m}{2}\PY{p}{,} \PY{l+m}{3}\PY{p}{,} \PY{l+m}{7}\PY{p}{,} \PY{l+m}{10}\PY{p}{,} \PY{l+m}{10}\PY{p}{,} \PY{l+m}{9}\PY{p}{)}
-         Y \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+m}{125}\PY{p}{,} \PY{l+m}{30}\PY{p}{,} \PY{l+m}{43}\PY{p}{,} \PY{l+m}{65}\PY{p}{,} \PY{l+m}{105}\PY{p}{,} \PY{l+m}{101}\PY{p}{,} \PY{l+m}{94}\PY{p}{)}
-         \PY{k+kp}{summary}\PY{p}{(}lm\PY{p}{(}Y\PY{o}{\PYZti{}}X\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}23}]:} plot\PY{p}{(}df\PY{p}{)}
 \end{Verbatim}
 
 
-    
-    \begin{verbatim}
-
-Call:
-lm(formula = Y ~ X)
-
-Residuals:
-      1       2       3       4       5       6       7 
- 18.042   1.234   4.460 -12.636  -1.958  -5.958  -3.184 
-
-Coefficients:
-            Estimate Std. Error t value Pr(>|t|)    
-(Intercept)    9.218      9.926   0.929 0.395703    
-X              9.774      1.248   7.833 0.000544 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 10.55 on 5 degrees of freedom
-Multiple R-squared:  0.9246,	Adjusted R-squared:  0.9096 
-F-statistic: 61.36 on 1 and 5 DF,  p-value: 0.0005441
-
-    \end{verbatim}
-
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_3_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
     
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}19}]:} A \PY{o}{=} \PY{k+kp}{cbind}\PY{p}{(}X\PY{p}{,} \PY{k+kp}{rep}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} \PY{k+kp}{length}\PY{p}{(}X\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{;} A
-         b \PY{o}{=} Y\PY{p}{;} b
+{\color{incolor}In [{\color{incolor}26}]:} plot\PY{p}{(}df\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{klassemidden\PYZsq{}}\PY{p}{]}\PY{p}{,} df\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{p\PYZus{}koop\PYZsq{}}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
 
-    \begin{tabular}{ll}
- X & \\
-\hline
-	 10 & 1 \\
-	  2 & 1 \\
-	  3 & 1 \\
-	  7 & 1 \\
-	 10 & 1 \\
-	 10 & 1 \\
-	  9 & 1 \\
-\end{tabular}
-
-
-    
-    \begin{enumerate*}
-\item 125
-\item 30
-\item 43
-\item 65
-\item 105
-\item 101
-\item 94
-\end{enumerate*}
-
-
-    
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}31}]:} x \PY{o}{=} \PY{k+kp}{solve}\PY{p}{(}\PY{k+kp}{t}\PY{p}{(}A\PY{p}{)} \PY{o}{\PYZpc{}*\PYZpc{}} A\PY{p}{)} \PY{o}{\PYZpc{}*\PYZpc{}} \PY{k+kp}{t}\PY{p}{(}A\PY{p}{)} \PY{o}{\PYZpc{}*\PYZpc{}} b\PY{p}{;} x
-\end{Verbatim}
 
-
-    \begin{tabular}{r|l}
-	X & 9.774\\
-	 & 9.218\\
-\end{tabular}
-
-
+        Error in stripchart.default(x1, {\ldots}): invalid plotting method
+    Traceback:
     
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} e \PY{o}{=} A \PY{o}{\PYZpc{}*\PYZpc{}} x \PY{o}{\PYZhy{}} b\PY{p}{;} e
-\end{Verbatim}
 
+        1. plot(df["klassemidden"], df["p\_koop"])
 
-    \begin{tabular}{l}
-	 -18.042\\
-	  -1.234\\
-	  -4.460\\
-	  12.636\\
-	   1.958\\
-	   5.958\\
-	   3.184\\
-\end{tabular}
+        2. plot.data.frame(df["klassemidden"], df["p\_koop"])
 
+        3. stripchart(x1, {\ldots})
 
-    
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}25}]:} sd\PY{p}{(}e\PY{p}{)}
-\end{Verbatim}
+        4. stripchart.default(x1, {\ldots})
 
+        5. stop("invalid plotting method")
 
-    9.62692405011417
-
-    
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}29}]:} \PY{k+kp}{sqrt}\PY{p}{(}\PY{k+kp}{sum}\PY{p}{(}\PY{p}{(}e \PY{o}{\PYZhy{}} \PY{k+kp}{mean}\PY{p}{(}e\PY{p}{)}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m}{2}\PY{p}{)} \PY{o}{/} \PY{p}{(}n\PY{l+m}{\PYZhy{}2}\PY{p}{)}\PY{p}{)}
-\end{Verbatim}
-
-
-    10.5457669232731
-
-    
-    Mailen naar N.Booij@nhl.nl.
+    \end{Verbatim}
 
 
     % Add a bibliography block to the postdoc

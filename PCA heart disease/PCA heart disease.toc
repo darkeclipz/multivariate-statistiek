@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}Inleiding}{3}{section.1}
+\contentsline {section}{\numberline {2}Data inlezen}{3}{section.2}
+\contentsline {section}{\numberline {3}Beschrijving van de kolommen}{4}{section.3}
+\contentsline {section}{\numberline {4}Verdelingen van de gegevens}{5}{section.4}
+\contentsline {subsection}{\numberline {4.1}Nominale/ordinale variabelen}{5}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Ratio variabelen}{6}{subsection.4.2}
+\contentsline {section}{\numberline {5}Centreren en standaardiseren}{7}{section.5}
+\contentsline {section}{\numberline {6}Berekenen van principele componenten}{8}{section.6}
+\contentsline {section}{\numberline {7}Rotatieambivalentie}{10}{section.7}
+\contentsline {section}{\numberline {8}Biplot: score plot + loading plot}{10}{section.8}
+\contentsline {section}{\numberline {9}Biplot: score plot + loading plot (controle met R)}{14}{section.9}
+\contentsline {section}{\numberline {10}Scree plot en grenswaarden}{15}{section.10}
+\contentsline {section}{\numberline {11}Errormatrices berekenen}{17}{section.11}
+\contentsline {section}{\numberline {12}MSE berekenen en variantie-analyse}{18}{section.12}
+\contentsline {section}{\numberline {13}Samplevarianties en variabele varianties}{21}{section.13}
+\contentsline {section}{\numberline {14}Verschillen en verbanden}{23}{section.14}
+\contentsline {section}{\numberline {15}Conclusie}{24}{section.15}
+\contentsline {section}{\numberline {16}Referenties}{24}{section.16}

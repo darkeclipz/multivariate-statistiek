@@ -1,0 +1,1145 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Principele componenten analyse (PCA): \\ Heart disease dataset}
+    \author{Rosa de Haan (rosa.de.haan@student.nhlstenden.com)\\ Lars Rotgers (lars.rotgers@student.nhlstenden.com)}
+    \date{4 juni 2019}
+    
+    
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    \newpage
+    \tableofcontents
+    \newpage
+    
+
+    
+    \hypertarget{inleiding}{%
+\section{Inleiding}\label{inleiding}}
+
+    In het voorgaande onderzoek is er gekeken met meervoudige regressie, en
+logistische regressie, of er verbanden zijn te vinden binnen de dataset.
+
+Met de meervoudige regressie was het lastig om een goed model op te
+stellen. De oorzaak hiervan is dat er bijna geen onderlinge correlatie
+tussen de variabelen is te vinden. Het doel was om \texttt{thalanch} te
+schatten a.d.h.v. de overige ratio variabelen. Het best verkregen model
+hiervoor had een \(R^2\) van \(0.229\), wat in onze ogen onbruikbaar is.
+
+Met de tweede opdracht, logistische regressie, is er gekeken of er een
+verband bestaat tussen \texttt{thalach} (maximaal behaalde hartslag) and
+\texttt{exang} (optreden van borstpijn tijdens de oefening). Hiervoor is
+een logistisch regressiemodel opgesteld en is een correlatiecoëfficiënt
+van \(0.9\) gevonden, wat aantoont dat er een sterk positief verband is
+tussen de variabelen.
+
+In de laatste opdracht, de principele componenten analyse, wordt er
+gekeken welke variabelen invloed hebben om de \texttt{target} kolom
+(wel/geen hartziekte). Op deze manier kan er misschien worden bepaald
+welke variabelen invloed hebben of op iemand een hartziekte heeft.
+
+    \hypertarget{data-inlezen}{%
+\section{Data inlezen}\label{data-inlezen}}
+
+    Om te beginnen met de principele componenten analyse (PCA), worden eerst
+de gegevens ingeladen. Vervolgens wordt de kolomnaam voor \texttt{age}
+hersteld.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} df \PY{o}{=} read.csv\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{heart.csv\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} kolomnaam herstellen; er staat \PYZsq{}`..age\PYZsq{}}
+        names \PY{o}{=} \PY{k+kp}{colnames}\PY{p}{(}df\PY{p}{)}\PY{p}{;} 
+        \PY{k+kp}{names}\PY{p}{[}\PY{l+m}{1}\PY{p}{]} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{age\PYZsq{}} 
+        \PY{k+kp}{colnames}\PY{p}{(}df\PY{p}{)} \PY{o}{=} \PY{k+kp}{names}
+        
+        \PY{k+kp}{head}\PY{p}{(}df\PY{p}{)}
+        \PY{k+kp}{print}\PY{p}{(}\PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Er zijn\PYZsq{}}\PY{p}{,} \PY{k+kp}{nrow}\PY{p}{(}df\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{rijen, en\PYZsq{}}\PY{p}{,} \PY{k+kp}{length}\PY{p}{(}df\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{ kolommen.\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{tabular}{r|llllllllllllll}
+ age & sex & cp & trestbps & chol & fbs & restecg & thalach & exang & oldpeak & slope & ca & thal & target\\
+\hline
+	 63  & 1   & 3   & 145 & 233 & 1   & 0   & 150 & 0   & 2.3 & 0   & 0   & 1   & 1  \\
+	 37  & 1   & 2   & 130 & 250 & 0   & 1   & 187 & 0   & 3.5 & 0   & 0   & 2   & 1  \\
+	 41  & 0   & 1   & 130 & 204 & 0   & 0   & 172 & 0   & 1.4 & 2   & 0   & 2   & 1  \\
+	 56  & 1   & 1   & 120 & 236 & 0   & 1   & 178 & 0   & 0.8 & 2   & 0   & 2   & 1  \\
+	 57  & 0   & 0   & 120 & 354 & 0   & 1   & 163 & 1   & 0.6 & 2   & 0   & 2   & 1  \\
+	 57  & 1   & 0   & 140 & 192 & 0   & 1   & 148 & 0   & 0.4 & 1   & 0   & 1   & 1  \\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1] "Er zijn 303 rijen, en 14  kolommen."
+
+    \end{Verbatim}
+
+    Er is te zien dat er 303 rijen (aantal samples, \(N=303\)) zijn en 14
+kolommen (aantal variabelen, \(v=14\)) in de dataset zitten.
+
+Omdat er voorspeld moet worden of iemand een hartziekte heeft, wordt de
+kolom \texttt{target} niet in het model opgenomen. Echter wordt
+\texttt{target} wel gebruikt als groepering voor de samples. Alle
+binaire variabelen worden wel opgenomen in het model.
+
+Tot slot worden er alvast een aantal functies gedeclareerd, die later
+gebruikt worden.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Calculate the trace of a matrix M.}
+        trace \PY{o}{=} \PY{k+kr}{function}\PY{p}{(}M\PY{p}{)} \PY{p}{\PYZob{}} \PY{p}{(}\PY{k+kp}{sum}\PY{p}{(}\PY{k+kp}{diag}\PY{p}{(}M\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{p}{\PYZcb{}}
+        
+        \PY{c+c1}{\PYZsh{} Calculate the variance of a matrix M.}
+        matrix.var \PY{o}{=} \PY{k+kr}{function}\PY{p}{(}M\PY{p}{)} \PY{p}{\PYZob{}} \PY{p}{(}\PY{k+kp}{trace}\PY{p}{(}\PY{k+kp}{t}\PY{p}{(}M\PY{p}{)} \PY{o}{\PYZpc{}*\PYZpc{}} M\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{k+kp}{ncol}\PY{p}{(}M\PY{p}{)} \PY{o}{*} \PY{k+kp}{nrow}\PY{p}{(}M\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{p}{\PYZcb{}}
+        
+        \PY{c+c1}{\PYZsh{} Calculate the standard deviation of a matrix M.}
+        matrix.sd  \PY{o}{=} \PY{k+kr}{function}\PY{p}{(}M\PY{p}{)} \PY{p}{\PYZob{}} \PY{p}{(}\PY{k+kp}{sqrt}\PY{p}{(}matrix.var\PY{p}{(}M\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{p}{\PYZcb{}}
+        
+        \PY{c+c1}{\PYZsh{} Calculate the mean for every row of a matrix M.}
+        rowMeans \PY{o}{=} \PY{k+kr}{function}\PY{p}{(}M\PY{p}{)} \PY{p}{\PYZob{}} \PY{p}{(}\PY{k+kp}{rowSums}\PY{p}{(}M\PY{p}{)} \PY{o}{/} \PY{k+kp}{ncol}\PY{p}{(}M\PY{p}{)}\PY{p}{)} \PY{p}{\PYZcb{}}
+        
+        \PY{c+c1}{\PYZsh{} Calculate the mean for every column of a matrix M.}
+        colMeans \PY{o}{=} \PY{k+kr}{function}\PY{p}{(}M\PY{p}{)} \PY{p}{\PYZob{}} \PY{p}{(}\PY{k+kp}{colSums}\PY{p}{(}M\PY{p}{)} \PY{o}{/} \PY{k+kp}{nrow}\PY{p}{(}M\PY{p}{)}\PY{p}{)} \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+    \hypertarget{beschrijving-van-de-kolommen}{%
+\section{Beschrijving van de
+kolommen}\label{beschrijving-van-de-kolommen}}
+
+Op de website waar de dataset is verkregen, is de volgende informatie
+gevonden over de kolommen. De dataset bevat in totaal 14 kolommen.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{age}: leeftijd. (Ratio)
+\item
+  \texttt{sex}: geslacht. (Nominaal)
+\item
+  \texttt{cp}: chest pain type (4 values). (Nominaal)
+\item
+  \texttt{trestbps}: resting blood pressure. (Ratio)
+\item
+  \texttt{chol}: serum cholestoral in mg/dl. (Ratio)
+\item
+  \texttt{fbs}: fasting blood sugar \textgreater{} 120 mg/dl. (Nominaal)
+\item
+  \texttt{restecg}: resting electrocardiographic results (values 0, 1,
+  2). (Nominaal)
+\item
+  \texttt{thalanch}: maximum heartrate achieved. (Ratio)
+\item
+  \texttt{exang}: exercise induced angina. (Nominaal)
+\item
+  \texttt{oldpeak}: ST depression induced by exercise relative to test.
+  (Ratio)
+\item
+  \texttt{slope}: the slope of the peak exercise ST segment. (Nominaal)
+\item
+  \texttt{ca}: number of major vessels (0-3) color by flourosopy.
+  (Ordinaal)
+\item
+  \texttt{thal}: 3 = normal, 6 = fixed defect, 7 = reversable defect.
+  (Nominaal)
+\item
+  \texttt{target}: indicated if someone has heart disease, 0 = false, 1
+  = true. (Nominaal)
+\end{enumerate}
+
+Van de meeste variabelen is het niet echt duidelijk waar het voor staat.
+Neem bijvoorbeeld \texttt{oldpeak}, in dit geval is
+\texttt{ST\ depression} een fenomeen dat voorkomt in een ECG. Een ECG is
+een electrocardiogram, een grafiek van de electrische activiteit van het
+hart. In dit geval wordt met \texttt{ST\ depression} een bepaalt patroon
+in de grafiek bedoeld. {[}1{]} Een aantal van deze patronen kunnen
+duiden op een hartziekte. {[}2{]}
+
+Een andere variabele is \texttt{exang}, wat aangeeft of er angina is
+voorkomen tijdens de oefening. Een angina is een pijn of
+oncomfortabelheid in de borst, mogelijk veroorzaakt doordat er te weinig
+zuurstof-rijk bloed bij die spier komt. Angina is echter geen ziekte,
+maar mogelijk een symptoom van een onderliggend hartprobleem. {[}3{]}
+
+    \hypertarget{verdelingen-van-de-gegevens}{%
+\section{Verdelingen van de
+gegevens}\label{verdelingen-van-de-gegevens}}
+
+    In deze paragraaf wordt er gekeken naar de verdelingen van de gegeven
+binnen de verschillende variabelen. Indien de verdelingen sterk qua
+schaal verschillen, is het wenselijk om de gegevens te standaardiseren.
+Op deze manier wordt er voorkomen, dat de variabele met een grote
+schaal, zwaarder worden meegeteld binnen het model.
+
+\hypertarget{nominaleordinale-variabelen}{%
+\subsection{Nominale/ordinale
+variabelen}\label{nominaleordinale-variabelen}}
+
+    In het onderstaande figuur staan staafdiagrammen voor elk van de
+nominale/ordinale variabelen.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} par\PY{p}{(}mfrow\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{3}\PY{p}{,}\PY{l+m}{3}\PY{p}{)}\PY{p}{)}
+        barplot\PY{p}{(}\PY{k+kp}{table}\PY{p}{(}df\PY{o}{\PYZdl{}}sex\PY{p}{)}\PY{p}{,} main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{df\PYZdl{}sex\PYZdq{}}\PY{p}{)}
+        barplot\PY{p}{(}\PY{k+kp}{table}\PY{p}{(}df\PY{o}{\PYZdl{}}cp\PY{p}{)}\PY{p}{,} main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{df\PYZdl{}cp\PYZdq{}}\PY{p}{)}
+        barplot\PY{p}{(}\PY{k+kp}{table}\PY{p}{(}df\PY{o}{\PYZdl{}}fbs\PY{p}{)}\PY{p}{,} main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{df\PYZdl{}fbs\PYZdq{}}\PY{p}{)}
+        barplot\PY{p}{(}\PY{k+kp}{table}\PY{p}{(}df\PY{o}{\PYZdl{}}restecg\PY{p}{)}\PY{p}{,} main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{df\PYZdl{}restecg\PYZdq{}}\PY{p}{)}
+        barplot\PY{p}{(}\PY{k+kp}{table}\PY{p}{(}df\PY{o}{\PYZdl{}}exang\PY{p}{)}\PY{p}{,} main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{df\PYZdl{}exang\PYZdq{}}\PY{p}{)}
+        barplot\PY{p}{(}\PY{k+kp}{table}\PY{p}{(}df\PY{o}{\PYZdl{}}slope\PY{p}{)}\PY{p}{,} main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{df\PYZdl{}slope\PYZdq{}}\PY{p}{)}
+        barplot\PY{p}{(}\PY{k+kp}{table}\PY{p}{(}df\PY{o}{\PYZdl{}}ca\PY{p}{)}\PY{p}{,} main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{df\PYZdl{}ca\PYZdq{}}\PY{p}{)}
+        barplot\PY{p}{(}\PY{k+kp}{table}\PY{p}{(}df\PY{o}{\PYZdl{}}thal\PY{p}{)}\PY{p}{,} main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{df\PYZdl{}thal\PYZdq{}}\PY{p}{)}
+        barplot\PY{p}{(}\PY{k+kp}{table}\PY{p}{(}df\PY{o}{\PYZdl{}}target\PY{p}{)}\PY{p}{,} main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{df\PYZdl{}targer\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_11_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Hier valt het op dat er een combinatie is van binaire variabelen, en
+variabelen met meerdere schaalpunten. Als er niet gestandaardiseerd
+wordt, dan worden de variabelen met meerdere groepen zwaarder meegeteld
+in het model.
+
+    \hypertarget{ratio-variabelen}{%
+\subsection{Ratio variabelen}\label{ratio-variabelen}}
+
+    In het onderstaande figuur staan histogrammen van de interval/ratio
+variabelen.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} par\PY{p}{(}mfrow\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{3}\PY{p}{,} \PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+        hist\PY{p}{(}df\PY{o}{\PYZdl{}}age\PY{p}{)}
+        hist\PY{p}{(}df\PY{o}{\PYZdl{}}trestbps\PY{p}{)}
+        hist\PY{p}{(}df\PY{o}{\PYZdl{}}\PY{k+kp}{chol}\PY{p}{)}
+        hist\PY{p}{(}df\PY{o}{\PYZdl{}}thalach\PY{p}{)}
+        hist\PY{p}{(}df\PY{o}{\PYZdl{}}oldpeak\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Het valt op dat de schaal waarop de waarnemingen zijn gemeten sterk
+verschillen. Vanuit dit oogpunt is het verstandig om de gegevens te
+standaardiseren.
+
+    \hypertarget{centreren-en-standaardiseren}{%
+\section{Centreren en
+standaardiseren}\label{centreren-en-standaardiseren}}
+
+    Vanuit de vorige paragraaf is gebleken dat het verstandig is om de
+gegevens, naast het centreren, ook te standaardiseren. Het centreren en
+standaardiseren, wordt ook wel normalizeren genoemd. Hiervoor wordt de
+\(z\)-score berekend. De formule hiervoor is
+\(z = \frac{x-\bar{x}}{s}\), waarbij \(\bar{x}\) het gemiddelde is en
+\(s\) de standaardafwijking.
+
+Eerst wordt de matrix \(X\) opgesteld met de gegevens die relevant zijn.
+Daarna worden de gegevens gecentreerd, aangeduidt met \(X_c\). Door de
+gegevens te centreren, worden alle hieropvolgende berekeningen
+vereenvoudigd. Daarnaast worden de gegevens gestandaardiseerd,
+aangeduidt met \(X_{cs}\), zodat elke variabele evenzwaar meetelt binnen
+het model.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} X \PY{o}{=} \PY{k+kp}{data.matrix}\PY{p}{(}df\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{13}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} alle gegevens behalve de \PYZsq{}target\PYZsq{} kolom}
+        m \PY{o}{=} \PY{k+kp}{apply}\PY{p}{(}X\PY{p}{,}\PY{l+m}{2}\PY{p}{,}\PY{k+kp}{mean}\PY{p}{)} \PY{c+c1}{\PYZsh{} gemiddelde berekenen, voor elke kolom}
+        s \PY{o}{=} \PY{k+kp}{apply}\PY{p}{(}X\PY{p}{,}\PY{l+m}{2}\PY{p}{,}sd\PY{p}{)} \PY{c+c1}{\PYZsh{} standaard deviatie berekenen, voor elke kolom}
+        Xc \PY{o}{=} \PY{k+kp}{sweep}\PY{p}{(}X\PY{p}{,}\PY{l+m}{2}\PY{p}{,}m\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}\PYZdq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} centreren}
+        Xcs \PY{o}{=} \PY{k+kp}{sweep}\PY{p}{(}Xc\PY{p}{,}\PY{l+m}{2}\PY{p}{,}s\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{/\PYZdq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} standaardiseren}
+\end{Verbatim}
+
+    In de onderstaande tabel staat een klein voorbeeld van hoe de gegevens
+van \(X_{cs}\) er nu uitzien. Voor elke kolom is nu het gemiddelde
+\(0\).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k+kp}{head}\PY{p}{(}Xcs\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{5}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{tabular}{lllll}
+ age & sex & cp & trestbps & chol\\
+\hline
+	  0.9506240  &  0.6798805  &  1.96986425 &  0.76269408 & -0.25591036\\
+	 -1.9121497  &  0.6798805  &  1.00092128 & -0.09258463 &  0.07208025\\
+	 -1.4717230  & -1.4659924  &  0.03197832 & -0.09258463 & -0.81542377\\
+	  0.1798773  &  0.6798805  &  0.03197832 & -0.66277043 & -0.19802967\\
+	  0.2899839  & -1.4659924  & -0.93696465 & -0.66277043 &  2.07861109\\
+	  0.2899839  &  0.6798805  & -0.93696465 &  0.47760118 & -1.04694656\\
+\end{tabular}
+
+
+    
+    \hypertarget{berekenen-van-principele-componenten}{%
+\section{Berekenen van principele
+componenten}\label{berekenen-van-principele-componenten}}
+
+    In deze paragraaf worden de principele componenten bepaald voor de
+gestandaardiseerde gegevens. Het eerste principele component \(PC_1\),
+is de eigenvector \(p_1'=[\beta_1,\beta_2,\ldots,\beta_{13}]\) met de
+hoogste eigenwaarde van de covariantie matrix van \(X_{cs}\). De
+covariantiematrix wordt als volgt bepaald:
+
+\[ \textrm{cov}(\mathbf{X}) = \dfrac{1}{N-1} \mathbf{X}^T\mathbf{X}, \]
+
+maar gelukkig kan dit ook in R met \texttt{cov(X)}. Vervolgens wordt van
+de covariantiematrix van \(X_{cs}\), de eigenvectoren en eigenwaarden
+bepaald. Om de eigenvectoren en eigenwaarden te vinden, is er de functie
+\texttt{eigen(X)}. De vectoren worden opgeslagen in
+\texttt{eigen(X)\$vectors} en staan al in aflopende volgorde.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} p \PY{o}{=} \PY{k+kp}{eigen}\PY{p}{(}cor\PY{p}{(}Xcs\PY{p}{)}\PY{p}{)}\PY{o}{\PYZdl{}}vectors \PY{c+c1}{\PYZsh{} eigenvectoren van de covariantiematrix van Xcs }
+                                    \PY{c+c1}{\PYZsh{} bepalen, dit zijn ook direct de PCAs}
+        
+        \PY{k+kp}{colnames}\PY{p}{(}p\PY{p}{)} \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{PC1\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{PC2\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{PC3\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{PC4\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{PC5\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{PC6\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{PC7\PYZsq{}}\PY{p}{,} 
+                        \PY{l+s}{\PYZsq{}}\PY{l+s}{PC8\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{PC9\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{PC10\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{PC11\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{PC12\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{PC13\PYZsq{}}\PY{p}{)}
+        
+        \PY{k+kp}{rownames}\PY{p}{(}p\PY{p}{)} \PY{o}{=} \PY{k+kp}{colnames}\PY{p}{(}df\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{13}\PY{p}{]}\PY{p}{)}
+        
+        p\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{6}\PY{p}{]} \PY{c+c1}{\PYZsh{} eerste x PCAs weergeven}
+        \PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Totaal:\PYZsq{}}\PY{p}{,} \PY{k+kp}{ncol}\PY{p}{(}p\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{kolommen\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{tabular}{r|llllll}
+  & PC1 & PC2 & PC3 & PC4 & PC5 & PC6\\
+\hline
+	age &  0.31420252 & -0.40614872 & -0.09407661 &  0.02066180 &  0.30715312 & -0.12829615\\
+	sex &  0.09083783 &  0.37779171 &  0.55484915 &  0.25530873 & -0.05070440 &  0.05496875\\
+	cp & -0.27460749 & -0.29726609 &  0.35697431 & -0.28790041 & -0.16317945 & -0.19341117\\
+	trestbps &  0.18392019 & -0.43818675 &  0.20384930 & -0.02260103 & -0.18813809 & -0.17945982\\
+	chol &  0.11737503 & -0.36451402 & -0.40782498 &  0.34340982 & -0.32006670 & -0.10472957\\
+	fbs &  0.07363999 & -0.31743328 &  0.48173624 &  0.06860532 &  0.23344184 &  0.24961364\\
+	restecg & -0.12772792 &  0.22088181 & -0.08919083 & -0.26609555 &  0.39366727 & -0.66681339\\
+	thalach & -0.41649811 & -0.07787618 &  0.15825529 &  0.18412539 & -0.32328431 & -0.12098445\\
+	exang &  0.36126745 &  0.26311790 & -0.12635610 &  0.11505621 & -0.03453568 &  0.23069914\\
+	oldpeak &  0.41963899 &  0.05225497 &  0.11034290 & -0.32629597 & -0.25057927 & -0.17007984\\
+	slope & -0.37977222 & -0.04837415 & -0.07381839 &  0.49484894 &  0.24682275 & -0.06406935\\
+	ca &  0.27326172 & -0.09414721 &  0.18356934 &  0.32801632 &  0.43536515 & -0.18210750\\
+	thal &  0.22202375 &  0.20072042 &  0.12501113 &  0.38919138 & -0.33195049 & -0.50885654\\
+\end{tabular}
+
+
+    
+    'Totaal: 13 kolommen'
+
+    
+    Er is te zien dat er in totaal \(13\) principele componenten zijn,
+namelijk het aantal variabelen binnen de gegevens. Vanuit de tabel kan
+de vector voor \(PC_1\) worden afgelezen, namelijk:
+
+\[ p_1 = \begin{bmatrix} 0.314 \\ 0.090 \\ -0.274 \\ 0.183 \\ 0.117 \\ 0.073 \\ -0.127 \\ -0.416 \\ 0.361 \\ 0.419 \\ -0.379 \\ 0.273 \\ 0.222 \end{bmatrix}. \]
+
+    Alle elementen in \(p_1\) worden ook wel \emph{loadings} genoemd. Aan de
+loadings valt te zien dat de waarde \(0.419\) de hoogste is. Dit
+betekend dat \texttt{oldpeak} het meeste invloed heeft op \(PC_1\).
+Daarnaast heeft \texttt{thalach} de hoogste negatieve invloed op
+\(PC_1\), met een waarde van \(-0.416\). Om te controleren of dit de
+juiste vector voor \(PC_1\) is, kan er met R worden gekeken met
+\texttt{prcomp(...)}:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k+kp}{data.matrix}\PY{p}{(}prcomp\PY{p}{(}df\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{13}\PY{p}{]}\PY{p}{,} scale\PY{o}{=}\PY{n+nb+bp}{T}\PY{p}{)}\PY{o}{\PYZdl{}}rotation\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{} PCA1}
+        \PY{c+c1}{\PYZsh{} data.matrix wordt gebruikt voor de opmaak hieronder.}
+\end{Verbatim}
+
+    \begin{tabular}{r|l}
+	age & -0.31420252\\
+	sex & -0.09083783\\
+	cp &  0.27460749\\
+	trestbps & -0.18392019\\
+	chol & -0.11737503\\
+	fbs & -0.07363999\\
+	restecg &  0.12772792\\
+	thalach &  0.41649811\\
+	exang & -0.36126745\\
+	oldpeak & -0.41963899\\
+	slope &  0.37977222\\
+	ca & -0.27326172\\
+	thal & -0.22202375\\
+\end{tabular}
+
+
+    
+    Dit komt overeen met de eigenvector met de grootste eigenwaarde van de
+covariantiematrix van \(X_{cs}\), alleen het teken is omgedraaid. In de
+volgende paragraaf wordt hiervoor een oplossing besproken.
+
+    \hypertarget{rotatieambivalentie}{%
+\section{Rotatieambivalentie}\label{rotatieambivalentie}}
+
+Omdat eigenvectoren allemaal loodrecht op elkaar staan, zijn er altijd
+twee vectoren mogelijk. Om dezelfde resultaten te krijgen als
+\texttt{prcomp(...)}, is het nodig om alle eigenvectoren om te keren.
+Dit concept wordt \emph{rotatieambivalentie} genoemdt. Dit is eenvoudig
+op te lossen met \(p := -p\).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} p \PY{o}{=} \PY{o}{\PYZhy{}}p
+\end{Verbatim}
+
+    \hypertarget{biplot-score-plot-loading-plot}{%
+\section{Biplot: score plot + loading
+plot}\label{biplot-score-plot-loading-plot}}
+
+    Om een bi-plot te maken, zijn er twee grafieken nodig. Er is een score
+plot tussen \(PC_1\) en \(PC_2\), en een loading plot.
+
+Om de scores \(t_1\) voor \(PC_1\) te bepalen, worden alle waarnemingen
+loodrecht op \(p_1\) geprojecteerd. De afstand vanaf de oorsprong \(O\)
+tot aan de loodrechte projectie op \(p_1\) is het nieuwe x-coordinaat
+van de waarneming in het \(p_1, p_2\) vlak. Ditzelfde wordt gedaan om de
+scores \(t_2\) te bepalen voor \(p_2\), en dient als y-coordinaat.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} t1 \PY{o}{=} Xcs \PY{o}{\PYZpc{}*\PYZpc{}} p\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{p}{]} \PY{c+c1}{\PYZsh{} projectie op p1}
+         t2 \PY{o}{=} Xcs \PY{o}{\PYZpc{}*\PYZpc{}} p\PY{p}{[}\PY{p}{,}\PY{l+m}{2}\PY{p}{]} \PY{c+c1}{\PYZsh{} projectie op p2}
+         t \PY{o}{=} Xcs \PY{o}{\PYZpc{}*\PYZpc{}} p \PY{c+c1}{\PYZsh{} voor alle p}
+\end{Verbatim}
+
+    Als deze nieuwe scores in een grafiek worden weergegeven, heet dit een
+score plot. De tweede grafiek, de loading plot, laat zien hoe de
+loadings van \(PC_1\) en \(PC_2\) bepalen waar de waarnemingen in de
+score plot belanden. De loadings mogen geschaald worden voor een
+weergave in een bi-plot. Het gaat is immers de onderline verhouding die
+belangrijk is. Met de onderstaande code, worden beide grafieken geplot
+in een bi-plot:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} score plot}
+         plot\PY{p}{(}t1\PY{p}{,} t2\PY{p}{,} pch\PY{o}{=}\PY{k+kc}{NA}\PY{p}{,} xlab\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{PCA1\PYZdq{}}\PY{p}{,} ylab\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{PCA2\PYZdq{}} \PY{p}{)} 
+         abline\PY{p}{(}h\PY{o}{=}\PY{l+m}{0}\PY{p}{,}lty\PY{o}{=}\PY{l+m}{1}\PY{p}{)} 
+         abline\PY{p}{(}v\PY{o}{=}\PY{l+m}{0}\PY{p}{,}lty\PY{o}{=}\PY{l+m}{1}\PY{p}{)}
+         title\PY{p}{(}main\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{PCA bi\PYZhy{}plot\PYZsq{}}\PY{p}{)}
+         grid\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} zet de groepnamen in de plot + rood markeren als target=1}
+         text\PY{p}{(}t1\PY{p}{,} t2\PY{p}{,} labels\PY{o}{=}df\PY{o}{\PYZdl{}}target\PY{p}{,} pos\PY{o}{=}\PY{l+m}{1}\PY{p}{,} xpd\PY{o}{=}\PY{k+kc}{NA}\PY{p}{,} col\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{black\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{red\PYZsq{}}\PY{p}{)}\PY{p}{[}df\PY{o}{\PYZdl{}}target\PY{l+m}{+1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} loading plot}
+         scale \PY{o}{=} \PY{l+m}{7}
+         arrows\PY{p}{(}\PY{l+m}{0}\PY{p}{,}\PY{l+m}{0}\PY{p}{,}p\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{p}{]} \PY{o}{*} \PY{k+kp}{scale}\PY{p}{,} p\PY{p}{[}\PY{p}{,}\PY{l+m}{2}\PY{p}{]} \PY{o}{*} \PY{k+kp}{scale}\PY{p}{,} col\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{blue\PYZsq{}}\PY{p}{,} lwd\PY{o}{=}\PY{l+m}{1}\PY{p}{)}
+         text\PY{p}{(}p\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{p}{]} \PY{o}{*} \PY{k+kp}{scale}\PY{p}{,} p\PY{p}{[}\PY{p}{,}\PY{l+m}{2}\PY{p}{]} \PY{o}{*} \PY{k+kp}{scale}\PY{p}{,} labels\PY{o}{=}\PY{k+kp}{colnames}\PY{p}{(}Xcs\PY{p}{)}\PY{p}{,} col\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{blue\PYZsq{}}\PY{p}{,} pos\PY{o}{=}\PY{l+m}{4}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_35_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Wat direct opvalt is dat bijna alle waarnemingen die een hartziekte
+hebben, een positieve waarde hebben voor \(PC_1\). Eerder bij de
+loadings werdt al duidelijk dat \texttt{oldpeak} en \texttt{thalach} het
+meeste invloed uit oefenenen, en ook hier valt te zien richting hiervan
+bijna horizontaal is. Twee andere variabelen die ook een grote loading
+hebben zijn \texttt{slope} en \texttt{exang}, maar dit zijn nominale
+variabelen.
+
+Ditzelfde kan ook gedaan worden voor \(PC_2\) en \(PC_3\):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{} score plot}
+         plot\PY{p}{(}\PY{k+kp}{t}\PY{p}{[}\PY{p}{,}\PY{l+m}{2}\PY{p}{]}\PY{p}{,} \PY{k+kp}{t}\PY{p}{[}\PY{p}{,}\PY{l+m}{3}\PY{p}{]}\PY{p}{,} pch\PY{o}{=}\PY{k+kc}{NA}\PY{p}{,} xlab\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{PCA2\PYZdq{}}\PY{p}{,} ylab\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{PCA3\PYZdq{}} \PY{p}{)} 
+         abline\PY{p}{(}h\PY{o}{=}\PY{l+m}{0}\PY{p}{,}lty\PY{o}{=}\PY{l+m}{1}\PY{p}{)} 
+         abline\PY{p}{(}v\PY{o}{=}\PY{l+m}{0}\PY{p}{,}lty\PY{o}{=}\PY{l+m}{1}\PY{p}{)}
+         title\PY{p}{(}main\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{PCA bi\PYZhy{}plot\PYZsq{}}\PY{p}{)}
+         grid\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} zet de groepnamen in de plot + rood markeren als target=1}
+         text\PY{p}{(}\PY{k+kp}{t}\PY{p}{[}\PY{p}{,}\PY{l+m}{2}\PY{p}{]}\PY{p}{,} \PY{k+kp}{t}\PY{p}{[}\PY{p}{,}\PY{l+m}{3}\PY{p}{]}\PY{p}{,} labels\PY{o}{=}df\PY{o}{\PYZdl{}}target\PY{p}{,} pos\PY{o}{=}\PY{l+m}{1}\PY{p}{,} 
+              xpd\PY{o}{=}\PY{k+kc}{NA}\PY{p}{,} col\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{black\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{red\PYZsq{}}\PY{p}{)}\PY{p}{[}df\PY{o}{\PYZdl{}}target\PY{l+m}{+1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} loading plot}
+         scale \PY{o}{=} \PY{l+m}{7}
+         arrows\PY{p}{(}\PY{l+m}{0}\PY{p}{,}\PY{l+m}{0}\PY{p}{,}p\PY{p}{[}\PY{p}{,}\PY{l+m}{2}\PY{p}{]} \PY{o}{*} \PY{k+kp}{scale}\PY{p}{,} p\PY{p}{[}\PY{p}{,}\PY{l+m}{3}\PY{p}{]} \PY{o}{*} \PY{k+kp}{scale}\PY{p}{,} col\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{blue\PYZsq{}}\PY{p}{,} lwd\PY{o}{=}\PY{l+m}{1}\PY{p}{)}
+         text\PY{p}{(}p\PY{p}{[}\PY{p}{,}\PY{l+m}{2}\PY{p}{]} \PY{o}{*} \PY{k+kp}{scale}\PY{p}{,} p\PY{p}{[}\PY{p}{,}\PY{l+m}{3}\PY{p}{]} \PY{o}{*} \PY{k+kp}{scale}\PY{p}{,} labels\PY{o}{=}\PY{k+kp}{colnames}\PY{p}{(}Xcs\PY{p}{)}\PY{p}{,} 
+              col\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{blue\PYZsq{}}\PY{p}{,} pos\PY{o}{=}\PY{l+m}{4}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_37_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Hier valt te zien dat er niet echt duidelijk kan worden gemaakt wanneer
+iemand een hartziekte heeft.
+
+    \hypertarget{controle-met-r}{%
+    	\newpage
+\section{Biplot: score plot + loading plot (controle met R)}\label{controle-met-r}}
+
+    Om te controleren of alles tot zover goed is gegaan, kan er met R snel
+een bi-plot worden gemaakt met behulp van \texttt{prcomp(...)} en
+\texttt{biplot(model)}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} biplot\PY{p}{(}prcomp\PY{p}{(}df\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{13}\PY{p}{]}\PY{p}{,} scale\PY{o}{=}\PY{n+nb+bp}{T}\PY{p}{)}\PY{p}{,} xlabs\PY{o}{=}df\PY{o}{\PYZdl{}}target\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_41_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    De bi-plot die door R is gegenereerd, komt goed overeen met de
+zelfgemaakte bi-plot.
+
+    \hypertarget{scree-plot-en-grenswaarden}{%
+    	\newpage
+\section{Scree plot en grenswaarden}\label{scree-plot-en-grenswaarden}}
+
+    Met een scree plot wordt er bepaald hoeveel PCs er worden meegenomen in
+een model. De grenswaarde die hiervoor geldt is als volgt bepaald:
+
+\[ grens = \dfrac{\textrm{trace}(\textrm{Covariantie matrix van }A)}{v}\]
+
+waarbij \(v\) het aantal variabelen is. Met de onderstaande code wordt
+een scree plot gegenereerd:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{}eigenwaarden bepalen}
+         lambdas \PY{o}{=} \PY{k+kp}{eigen}\PY{p}{(}cov\PY{p}{(}Xcs\PY{p}{)}\PY{p}{)}\PY{o}{\PYZdl{}}values
+         lambdas \PY{o}{=} \PY{k+kp}{sort}\PY{p}{(}lambdas\PY{p}{,} decreasing\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} staafdiagram maken}
+         plot\PY{p}{(}lambdas\PY{p}{,} type\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{o\PYZsq{}}\PY{p}{,} pch\PY{o}{=}\PY{l+m}{18}\PY{p}{,} col\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{red\PYZsq{}}\PY{p}{,} cex\PY{o}{=}\PY{l+m}{3}\PY{p}{,} lwd\PY{o}{=}\PY{l+m}{2}
+              \PY{p}{,} main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Scree plot\PYZdq{}}\PY{p}{,} xlab\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Index\PYZdq{}}\PY{p}{,} ylab\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Eigenvalue\PYZdq{}}\PY{p}{,}
+             xlim\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{0}\PY{p}{,} \PY{k+kp}{length}\PY{p}{(}lambdas\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} grenswaarde bepalen}
+         lim \PY{o}{=} \PY{k+kp}{trace}\PY{p}{(}\PY{p}{(}cov\PY{p}{(}Xcs\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{k+kp}{length}\PY{p}{(}lambdas\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} grenswaarde tekenen}
+         abline\PY{p}{(}h\PY{o}{=}lim\PY{p}{,} lt\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{dashed\PYZsq{}}\PY{p}{,} lwd\PY{o}{=}\PY{l+m}{4}\PY{p}{,} col\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{gray\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} eigenwaarden in de grafiek plotten}
+         text\PY{p}{(}lambdas \PY{o}{\PYZhy{}} \PY{l+m}{0.01}\PY{p}{,} labels\PY{o}{=}\PY{k+kp}{round}\PY{p}{(}lambdas\PY{p}{,}\PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+         grid\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_45_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Hier is te zien, omdat er is gestandardiseerd, dat de grenswaarde \(1\)
+is. Dit betekend dat er \(5\) PCs zijn waarvan de eigenwaarde groter is
+dan \(1\), en worden alleen deze meegenomen.
+
+    Met R kan ook een scree plot snel worden gecontroleerd:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} screeplot\PY{p}{(}prcomp\PY{p}{(}df\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{13}\PY{p}{]}\PY{p}{,} scale\PY{o}{=}\PY{n+nb+bp}{T}\PY{p}{)}\PY{p}{)}
+         grid\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_48_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Met een visuele inspectie valt te zien dat de waarden overeen komen met
+de zelfgemaakte scree plot.
+
+    \hypertarget{errormatrices-berekenen}{%
+\section{Errormatrices berekenen}\label{errormatrices-berekenen}}
+
+    De waarnemingen kunnen we ook opschrijven in een model als lineaire
+combinaties van de PCs en de t-scores. Het model hiervoor is:
+
+\[ X_{cs} = \hat{X}_{cs} + E, \]
+
+waarbij \(\hat{X}_{cs}\) de verklaarde variantie bevat en \(E\) de
+onverklaarde variantie bevat. Voor dit model worden er \(5\) PCs
+gebruikt, dus het gehele model is als volgt:
+
+\[ X_{cs} = t_1 \cdot p^T_1 + t_2 \cdot p^T_2 + \cdots + t_5 \cdot p^T_5 + E_5. \]
+
+    Omdat alle \(t\) scores al zijn berekend, is het bepalen van de error
+matrices nog eenvoudiger. De formule hiervoor is
+\(E_n = E_{n-1} - t_n \cdot p^T_n\). Vanuit de scree plot is er bepaald
+dat de eerste vijf PCs worden meegenomen in het model. Met de
+onderstaande code, worden de error matrices berekend.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} E0 \PY{o}{=} Xcs
+         E1 \PY{o}{=} E0 \PY{o}{\PYZhy{}} t1    \PY{o}{\PYZpc{}*\PYZpc{}} \PY{k+kp}{t}\PY{p}{(}p\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{p}{]}\PY{p}{)}
+         E2 \PY{o}{=} E1 \PY{o}{\PYZhy{}} \PY{k+kp}{t}\PY{p}{[}\PY{p}{,}\PY{l+m}{2}\PY{p}{]} \PY{o}{\PYZpc{}*\PYZpc{}} \PY{k+kp}{t}\PY{p}{(}p\PY{p}{[}\PY{p}{,}\PY{l+m}{2}\PY{p}{]}\PY{p}{)}
+         E3 \PY{o}{=} E2 \PY{o}{\PYZhy{}} \PY{k+kp}{t}\PY{p}{[}\PY{p}{,}\PY{l+m}{3}\PY{p}{]} \PY{o}{\PYZpc{}*\PYZpc{}} \PY{k+kp}{t}\PY{p}{(}p\PY{p}{[}\PY{p}{,}\PY{l+m}{3}\PY{p}{]}\PY{p}{)}
+         E4 \PY{o}{=} E3 \PY{o}{\PYZhy{}} \PY{k+kp}{t}\PY{p}{[}\PY{p}{,}\PY{l+m}{4}\PY{p}{]} \PY{o}{\PYZpc{}*\PYZpc{}} \PY{k+kp}{t}\PY{p}{(}p\PY{p}{[}\PY{p}{,}\PY{l+m}{4}\PY{p}{]}\PY{p}{)}
+         E5 \PY{o}{=} E4 \PY{o}{\PYZhy{}} \PY{k+kp}{t}\PY{p}{[}\PY{p}{,}\PY{l+m}{5}\PY{p}{]} \PY{o}{\PYZpc{}*\PYZpc{}} \PY{k+kp}{t}\PY{p}{(}p\PY{p}{[}\PY{p}{,}\PY{l+m}{5}\PY{p}{]}\PY{p}{)}
+         E \PY{o}{=} \PY{k+kt}{list}\PY{p}{(}E0\PY{p}{,} E1\PY{p}{,} E2\PY{p}{,} E3\PY{p}{,} E4\PY{p}{,} E5\PY{p}{)}
+\end{Verbatim}
+
+    \hypertarget{mse-berekenen-en-variantie-analyse}{%
+\section{MSE berekenen en
+variantie-analyse}\label{mse-berekenen-en-variantie-analyse}}
+
+    Om te bepalen hoeveel procent van de variante wordt verklaard per
+principeel component, wordt er een variantie-analyse uitgevoerd.
+Hiervoor worden voor alle error matrices \(E_1, \ldots, E_5\) de
+variantie bepaald.
+
+Met de volgende formule wordt de variantie voor een matrix bepaald:
+
+\[ \textrm{matrix.var}(\mathbf{E}) = \dfrac{\sum\limits_{i=1}^N \sum\limits_{j=1}^v e^2_{ij}}{N\cdot v} = \dfrac{\textrm{trace}(E^T\cdot E)}{N\cdot v}. \]
+
+Vervolgens wordt dit gebruik om een tabel op te stellen met de volgende
+kolommen:
+
+\begin{itemize}
+\tightlist
+\item
+  Aantal PCs in het model
+\item
+  Totale variantie
+\item
+  Resterende variantie in \%
+\item
+  Verklaarde variantie in \%
+\item
+  Verklaarde variantie per PC
+\end{itemize}
+
+Met de onderstaande code wordt deze tabel opgesteld.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{\PYZsh{} aantal PCs}
+         pcs \PY{o}{=} \PY{l+m}{0}\PY{o}{:}\PY{l+m}{5}
+         
+         \PY{c+c1}{\PYZsh{} totale variantie bepalen}
+         total.var \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}matrix.var\PY{p}{(}E0\PY{p}{)}\PY{p}{,} matrix.var\PY{p}{(}E1\PY{p}{)}\PY{p}{,} matrix.var\PY{p}{(}E2\PY{p}{)}\PY{p}{,}
+                      matrix.var\PY{p}{(}E3\PY{p}{)}\PY{p}{,} matrix.var\PY{p}{(}E4\PY{p}{)}\PY{p}{,} matrix.var\PY{p}{(}E5\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} resterende variantie bepalen}
+         rest.var \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} total.var\PY{p}{[}\PY{l+m}{2}\PY{p}{]} \PY{o}{/} total.var\PY{p}{[}\PY{l+m}{1}\PY{p}{]}\PY{p}{,} total.var\PY{p}{[}\PY{l+m}{3}\PY{p}{]} \PY{o}{/} total.var\PY{p}{[}\PY{l+m}{1}\PY{p}{]}\PY{p}{,} 
+                      total.var\PY{p}{[}\PY{l+m}{4}\PY{p}{]} \PY{o}{/} total.var\PY{p}{[}\PY{l+m}{1}\PY{p}{]}\PY{p}{,} total.var\PY{p}{[}\PY{l+m}{5}\PY{p}{]} \PY{o}{/} total.var\PY{p}{[}\PY{l+m}{1}\PY{p}{]}\PY{p}{,} total.var\PY{p}{[}\PY{l+m}{6}\PY{p}{]}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} verklaarde variantie bepalen}
+         expl.var \PY{o}{=} \PY{l+m}{1} \PY{o}{\PYZhy{}} rest.var
+         
+         \PY{c+c1}{\PYZsh{} verklaarde variantie per PC bepalen}
+         var.per.pc \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+m}{0}\PY{p}{,} \PY{k+kp}{diff}\PY{p}{(}expl.var\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} tabel opstellen}
+         df.vars \PY{o}{=} \PY{k+kt}{data.frame}\PY{p}{(}pcs\PY{p}{,} total.var\PY{p}{,} rest.var\PY{p}{,} expl.var\PY{p}{,} var.per.pc\PY{p}{)}
+         \PY{k+kp}{colnames}\PY{p}{(}df.vars\PY{p}{)} \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{PCs in model\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Total variance\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Rest variance in \PYZpc{}\PYZdq{}}\PY{p}{,} 
+                               \PY{l+s}{\PYZdq{}}\PY{l+s}{Explained variance in \PYZpc{}\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Explained variance per PC\PYZdq{}}\PY{p}{)}
+         df.vars
+\end{Verbatim}
+
+    \begin{tabular}{r|lllll}
+ PCs in model & Total variance & Rest variance in \% & Explained variance in \% & Explained variance per PC\\
+\hline
+	 0          & 0.9966997  & 1.0000000  & 0.0000000  & 0.00000000\\
+	 1          & 0.7848606  & 0.7874595  & 0.2125405  & 0.21254053\\
+	 2          & 0.6670436  & 0.6692524  & 0.3307476  & 0.11820708\\
+	 3          & 0.5732899  & 0.5751882  & 0.4248118  & 0.09406418\\
+	 4          & 0.4827324  & 0.4843309  & 0.5156691  & 0.09085735\\
+	 5          & 0.4043791  & 0.4043791  & 0.5956209  & 0.07995181\\
+\end{tabular}
+
+
+    
+    Wat opvalt is de \(PC_1\) een redelijk deel van de variantie verklaard,
+namelijk \(21\%\). De volgende, \(PC_2\), voegt slechts \(12\%\) toe.
+
+Ook is de tabel te controleren met R. Dezelfde kan tabel kan worden
+gevonden met \texttt{summary(...)}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k+kp}{summary}\PY{p}{(}prcomp\PY{p}{(}df\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{o}{:}\PY{l+m}{13}\PY{p}{]}\PY{p}{,} scale\PY{o}{=}\PY{n+nb+bp}{T}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+Importance of components:
+                          PC1    PC2     PC3     PC4     PC5     PC6     PC7
+Standard deviation     1.6622 1.2396 1.10582 1.08681 1.01092 0.98489 0.92885
+Proportion of Variance 0.2125 0.1182 0.09406 0.09086 0.07861 0.07462 0.06637
+Cumulative Proportion  0.2125 0.3307 0.42481 0.51567 0.59428 0.66890 0.73527
+                           PC8    PC9    PC10    PC11    PC12   PC13
+Standard deviation     0.88088 0.8479 0.78840 0.72808 0.65049 0.6098
+Proportion of Variance 0.05969 0.0553 0.04781 0.04078 0.03255 0.0286
+Cumulative Proportion  0.79495 0.8503 0.89807 0.93885 0.97140 1.0000
+    \end{verbatim}
+
+    
+    Hier valt te zien dat de verklaarde variantie in \% voor een model met
+één PC overeenkomt met \(0.212\). De tabel kan ook worden weergegeven in
+een grafiek. Dit wordt gedaan met de onderstaande code.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c+c1}{\PYZsh{} lijngrafiek maken voor verklaarde variantie}
+         plot\PY{p}{(}df.vars\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{p}{]}\PY{p}{,} df.vars\PY{p}{[}\PY{p}{,}\PY{l+m}{3}\PY{p}{]}\PY{p}{,} type\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{o\PYZsq{}}\PY{p}{,} col\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{red\PYZsq{}}\PY{p}{,} lwd\PY{o}{=}\PY{l+m}{2}\PY{p}{,} pch\PY{o}{=}\PY{l+m}{18}\PY{p}{,} cex\PY{o}{=}\PY{l+m}{2}\PY{p}{,} 
+              main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Explained variance per PC\PYZdq{}}\PY{p}{,} ylim\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{0}\PY{p}{,}\PY{l+m}{1}\PY{p}{)}\PY{p}{,}
+              ylab\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{} of Total variance\PYZdq{}}\PY{p}{,} xlab\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZsh{} of PCs\PYZdq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} lijngrafiek toevoegen voor onverklaarde variantie}
+         lines\PY{p}{(}df.vars\PY{p}{[}\PY{p}{,}\PY{l+m}{1}\PY{p}{]}\PY{p}{,} df.vars\PY{p}{[}\PY{p}{,}\PY{l+m}{4}\PY{p}{]}\PY{p}{,} type\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{o\PYZsq{}}\PY{p}{,} col\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{gold\PYZsq{}}\PY{p}{,} pch\PY{o}{=}\PY{l+m}{17}\PY{p}{,} lwd\PY{o}{=}\PY{l+m}{2}\PY{p}{,} cex\PY{o}{=}\PY{l+m}{2}\PY{p}{)}
+         
+         legend\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{bottomright\PYZdq{}}\PY{p}{,} col\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{red\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{gold\PYZsq{}}\PY{p}{)}\PY{p}{,} 
+                legend\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Remaining variance\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Explained variance\PYZsq{}}\PY{p}{)}\PY{p}{,} pch\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{18}\PY{p}{,} \PY{l+m}{17}\PY{p}{)}\PY{p}{)}
+         grid\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_60_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Wat opvalt is dat bij de grenswaarde, waardoor er \(5\) PCs werden
+opgenomen, de lijnen elkaar kruisen. Op het moment dat er \(5\) PCs in
+het model zijn opgenomen, is de verklaarde variantie \(59\%\).
+
+    Een andere aspect is het kijken naar mogelijke uitbijters. Hiervoor
+wordt er gekeken naar de gemiddelde kolom of rij varianties van de error
+matrices. Omdat er nogal veel waarnemingen zijn, is een grafiek van de
+rijen niet overzichtelijk. Echter is het wel mogelijk om van de kolommen
+een error matrix plot te maken. Met de onderstaande code wordt deze
+grafiek gegenereerd.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{k+kp}{rownames}\PY{p}{(}E5\PY{p}{)} \PY{o}{=} \PY{l+m}{1}\PY{o}{:}\PY{k+kp}{nrow}\PY{p}{(}df\PY{p}{)}
+         barplot\PY{p}{(}\PY{k+kp}{colMeans}\PY{p}{(}E5\PY{o}{\PYZca{}}\PY{l+m}{2}\PY{p}{)}\PY{p}{,} las\PY{o}{=}\PY{l+m}{2}\PY{p}{,} col\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{orangered1\PYZsq{}}\PY{p}{)}
+         grid\PY{p}{(}\PY{p}{)}
+         title\PY{p}{(}main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Final Error Matrix (Variables)\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_63_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Hier is te zien dat de fout over alle variabelen goed verdeeld is. Er is
+geen variabele die een grote fout veroorzaakt in de laatste error matrix
+(\(E_5\)). Vanuit dit oogpunt zitten er geen uitbijters in de gegevens.
+
+    \hypertarget{samplevarianties-en-variabele-varianties}{%
+\section{Samplevarianties en variabele
+varianties}\label{samplevarianties-en-variabele-varianties}}
+
+    Een andere grafiek laat zien hoe de variantie afneemt bij het toevoegen
+van meerdere PCs. Ook hier is er de mogelijkheid om dit voor de kolommen
+en de rijen te doen. Aangezien er veel rijen zijn, wordt dit alleen voor
+de kolommen gedaan. De grafiek die anders ontstaat is niet duidelijk.
+
+Met de onderstaande code wordt deze grafiek gegenereerd voor de
+variabelen.
+\newpage
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c+c1}{\PYZsh{} kolomgemiddelden bepalen voor de error matrices}
+         variable.vars \PY{o}{=} \PY{k+kt}{data.frame}\PY{p}{(}\PY{k+kp}{colMeans}\PY{p}{(}\PY{p}{(}E0\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m}{2}\PY{p}{)}\PY{p}{,}\PY{k+kp}{colMeans}\PY{p}{(}\PY{p}{(}E1\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m}{2}\PY{p}{)}\PY{p}{,}
+                                    \PY{k+kp}{colMeans}\PY{p}{(}\PY{p}{(}E2\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m}{2}\PY{p}{)}\PY{p}{,}\PY{k+kp}{colMeans}\PY{p}{(}\PY{p}{(}E3\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m}{2}\PY{p}{)}\PY{p}{,}
+                                    \PY{k+kp}{colMeans}\PY{p}{(}\PY{p}{(}E4\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m}{2}\PY{p}{)}\PY{p}{,}\PY{k+kp}{colMeans}\PY{p}{(}\PY{p}{(}E5\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} kleuren}
+         colors \PY{o}{=} \PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}018786\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}019592\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}01a299\PYZsq{}}\PY{p}{,} 
+                    \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}00b3a6\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}00c4b4\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZsh{}70efde\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} staafdiagram maken}
+         barplot\PY{p}{(}\PY{k+kp}{t}\PY{p}{(}variable.vars\PY{p}{)}\PY{p}{,} las\PY{o}{=}\PY{l+m}{2}\PY{p}{,} beside\PY{o}{=}\PY{n+nb+bp}{T}\PY{p}{,} 
+                 main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Variable variances plot\PYZdq{}}\PY{p}{,} col\PY{o}{=}colors\PY{p}{)}
+         legend\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{topright\PYZdq{}}\PY{p}{,} legend\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{PC 0\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{PC 1\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{PC 2\PYZdq{}}\PY{p}{,} 
+                                     \PY{l+s}{\PYZdq{}}\PY{l+s}{PC 3\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{PC 4\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{PC 5\PYZdq{}}\PY{p}{)}\PY{p}{,} fill\PY{o}{=}colors\PY{p}{)}
+         grid\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_67_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Hier valt te zien dat een gedeelte van de variantie is opgenomen in het
+eerste principele component \(PC_1\). Voornamelijk voor de variabele met
+een grote loading in \(p_1\), is er te zien dat een deel van de
+variantie wordt verklaard met \(PC_1\). Doordat de variabelen
+\texttt{thalach}, \texttt{exang}, \texttt{oldpeak} en \texttt{slope} een
+grote loading hebben, hebben ze vermoedelijk een grote invloed op het
+feit of iemand een hartziekte heeft. De analyse laat zien dat deze
+variabelen het zwaarst mee wegen in het eerste model.
+
+Vanuit de loading plot is ook goed te zien dat juist deze variabelen ook
+de correcte richting uitoefenen op waar de waarnemingen belanden in de
+score plot.
+
+    \hypertarget{verschillen-en-verbanden}{%
+\section{Verschillen en verbanden}\label{verschillen-en-verbanden}}
+
+    In de vorige paragraaf is gebleken dat een gedeelte van de variantie in
+het model met \(1\) PC wordt verklaard door de variabelen
+\texttt{thalach}, \texttt{exang}, \texttt{oldpeak} en \texttt{slope}. Om
+te kijken of er inderdaad een significant verschil is tussen deze
+variabelen en de splitsingsvariabele \texttt{target}, is er met SPSS een
+t-toets uitgevoerd voor het verschil in gemiddelden. Hiervoor is alleen
+van \texttt{slope} geen toets uitgevoerd, omdat in dit geval beide
+variabelen nominaal zijn.
+
+Het resultaat van de toets tussen alle ratio variabelen en de
+splitsingsvariabele \texttt{target} is te vinden in de onderstaande
+tabel:
+
+
+ \begin{center}
+	\adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{t-toets.PNG}
+\end{center}
+
+    Hier is te zien dat \texttt{age}, \texttt{trestbps}, \texttt{thalach} en
+\texttt{oldpeak} allen een significant verschil vertonen. In de loading
+plot is te zien dat \texttt{trestbps} en \texttt{age} beide een richting
+uitoefenen die bijna loodrecht op \texttt{thalach} en \texttt{oldpeak}
+staat. Wat ook opvalt is dat voor de groep met een hartziekte, de
+maximaal behaalde hartslag tijden de oefening, gemiddeld bijna \(20\)
+BPM hoger is dan bij de groep zonder hartziekte. Ditzelfde geldt voor
+\texttt{oldpeak}, deze scoort gemiddeld \texttt{1} lager bij de groep
+met een hartziekte. Dit geeft de volgende vraag, is er een verband
+tussen \texttt{oldpeak} en \texttt{thalach}? Vanuit het onderzoek met
+meervoudige regressie is gebleken dat de correlatiecoëfficiënt
+hiertussen \(-0.344\) is. Een snelle toets in SPSS toont aan dat dit
+resultaat significant is met een p-waarde van \(0.00\) (toetsresultaat
+achterwege gelaten). Er is dus een negatief zwak verband tussen
+\texttt{oldpeak} en \texttt{thalach}.
+
+    \hypertarget{conclusie}{%
+\section{Conclusie}\label{conclusie}}
+
+    Vanuit de principele componenten analyse en de verschiltoets is gebleken
+dat de variabelen die de grootste invloed uitoefenen op de mogelijkheid
+of iemand een hartziekte heeft, \texttt{oldpeak} en \texttt{thalach}
+zijn. Uit de loading plot valt te zien dat \texttt{slope} en
+\texttt{exang} een grote invloed uitoefenen op de mogelijkheid of iemand
+een hartziekte heeft. Echter zijn dit nominale variabelen en is hiervan
+geen verschiltoets uitgevoerd.
+
+De variabele \texttt{oldpeak} staat voor \emph{ST depression induced by
+exercise relative to test}. Hiermee wordt een specifiek fenomeen bedoeld
+wat voorkomt in een ECG (electrocardiograph) wat een indicatie is voor
+een onderliggend probleem genaamd ischemia. {[}1{]} Als een van de
+bloedvatten verstoopt raakt, onstaat er een ernstig probleem genaamd
+\emph{ischemia}. {[}4{]} De variabele \texttt{slope} duidt een ander
+fenomeen aan in een ECG, wat ook duidt op een onderliggend hartprobleem.
+
+De andere variabele \texttt{thalach} geeft de maximaal behaalde hartslag
+tijdens de oefening aan. Hier valt het op dat bij de mensen met een
+hartprobleem, deze gemiddeld \(20\) BPM hoger is.
+
+Beide variabelen geven een goede indicatie op mogelijke hartproblemen.
+Aangezien niet iedereen thuis een ECG heeft, kan je dit zelf niet
+controleren. Echter is het wel mogelijk om zelf de maximaal behaalde
+hartslag tijdens een oefening bij te houden. Als deze hoger ligt dan het
+gemiddelde, wat bepaald is per leeftijd, is dat een goede reden voor een
+doktersbezoek.
+
+De laatste variabele, \texttt{exang}, geeft aan of iemand pijn of
+oncomfortabelheden in zijn of haar borst heeft ervaren gedurende de
+oefening. Dit fenomeen wordt angina genoemd. Dit word mogelijk
+veroorzaakt doordat er te weinig zuurstof-rijk bloed bij die spier komt.
+Ook dit is een symptoom van een onderliggend hartprobleem. {[}3{]}
+
+    \hypertarget{referenties}{%
+\section{Referenties}\label{referenties}}
+
+    In dit rapport zijn de volgende referenties geraadpleegd:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  https://ecgwaves.com/ecg-topic/ecg-st-segment-depression-ischemia-infarction-differential-diagnoses/
+\item
+  https://www.webmd.com/heart-disease/electrocardiogram-ekgs\#1
+\item
+  https://www.heart.org/en/health-topics/heart-attack/angina-chest-pain
+\item
+  https://www.webmd.com/heart-disease/what-is-ischemia\#1
+\end{enumerate}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
